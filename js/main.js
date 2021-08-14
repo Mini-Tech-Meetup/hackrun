@@ -1,8 +1,10 @@
 function getReplaceWord(word) {
-    if (word == '이' || word == 'e' || word == 'E')
+    if (word == 'e'&&!document.getElementById('e').checked)
         return ' '
 
-    if (word == '2')
+    if (word == 'E'&&!document.getElementById('E').checked)
+        return ' '
+    if (word == '2'&&!document.getElementById('2').checked)
         return '둘'
 
     const firstArray = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
@@ -18,20 +20,24 @@ function getReplaceWord(word) {
     let first = firstArray[firstIdx]
     let mid = midArray[midIdx]
     let last = lastArray[lastIdx]
-    if (first == 'ㅇ' && mid == 'ㅣ')
-        return last
+    if(!document.getElementById('이').checked)
+        if (first == 'ㅇ' && mid == 'ㅣ')
+            return last
 
     return word
 }
 
+function changeText(text){
+    if(text===undefined)
+        text=document.getElementById('input').value
+    let ar = Array.from(text)
+    let out = ar.map(getReplaceWord).join('')
+
+    document.getElementById('output').value = out
+}
 
 document.getElementById('input').addEventListener('keyup', function(event) {
-    
-    let ar = Array.from(this.value)
-    let out = ar.map(getReplaceWord).join('')
-    
-    document.getElementById('output').value = out
-
+    changeText(this.value)
 })
 
 document.getElementById('copy').addEventListener('click', function(event) {
