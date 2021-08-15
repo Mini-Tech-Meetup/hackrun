@@ -28,12 +28,18 @@ function getReplaceWord(word) {
 }
 
 function changeText(text){
+    let title = "😁빠진 SEASON 2"
     if(text===undefined)
         text=document.getElementById('input').value
     let ar = Array.from(text)
     let out = ar.map(getReplaceWord).join('')
 
     document.getElementById('output').value = out
+
+    ar = Array.from(title)
+    out = ar.map(getReplaceWord).join('')
+    document.getElementById('title').innerText = out
+
 }
 
 function unselectAllAndChangeText()
