@@ -36,6 +36,18 @@ function changeText(text){
     document.getElementById('output').value = out
 }
 
+function unselectAllAndChangeText()
+{
+    const checkboxes = document.getElementsByName('color');
+
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = false; 
+      })
+      
+
+    changeText()
+}
+
 document.getElementById('input').addEventListener('keyup', function(event) {
     changeText(this.value)
 })
